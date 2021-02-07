@@ -7,6 +7,14 @@ This is an efficient shader that doesn't require any mods to run.
 3. Under Video Settings, set Graphics to Fabulous.
 4. Go to Resource Packs and select Dale.
 
-### Comparison
+### Comparisons
 ![Dale](https://user-images.githubusercontent.com/62495822/107152434-213b9400-6968-11eb-976c-39d344d3e71c.png)
 ![Vanilla](https://user-images.githubusercontent.com/62495822/107152435-239dee00-6968-11eb-9376-cc1c3b480555.png)
+![2021-02-07_18 19 06](https://user-images.githubusercontent.com/62495822/107154084-53052880-6971-11eb-905b-318f9807db01.png)
+![2021-02-07_18 19 31](https://user-images.githubusercontent.com/62495822/107154086-56001900-6971-11eb-8896-2d1780b7b1cc.png)
+
+![2021-02-07_18 16 55](https://user-images.githubusercontent.com/62495822/107154090-5ac4cd00-6971-11eb-872d-e389c6411e19.png)
+![2021-02-07_18 16 42](https://user-images.githubusercontent.com/62495822/107154089-58fb0980-6971-11eb-8060-6d0354d760bc.png)
+
+![2021-02-07_18 16 11](https://user-images.githubusercontent.com/62495822/107154092-5e585400-6971-11eb-8424-556a346d255b.png)
+![2021-02-07_18 15 57](https://user-images.githubusercontent.com/62495822/107154096-5f898100-6971-11eb-9d56-a7cc464bef50.png)
