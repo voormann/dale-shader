@@ -1,6 +1,14 @@
 # Dale Shader
 This is an efficient shader for Minecraft 1.16+ that doesn't require any mods to run. Works well with [Sodium](https://github.com/CaffeineMC/sodium-fabric).
 
+### Features
+- Anti-aliasing
+- Bloom
+- Tone mapping
+- Color correction
+- Vivid foliage LUTs
+- Improved rain, snow, water, sun and moon
+
 ### How to install
 1. Download the repository and extract it.
 2. Navigate to your Minecraft folder and move the Dale folder into your resourcepacks folder.
