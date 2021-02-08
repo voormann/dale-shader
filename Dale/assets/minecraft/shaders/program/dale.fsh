@@ -105,14 +105,14 @@ vec3 bloom() {
     vec3 scalingValues = vec3(1.25, 1.5, 1.35);
 
     if (texture2D(DiffuseDepthSampler, texCoord).x < (1.0 - 1.0 / 32.0 / 32.0))
-        scalingValues = vec3(2.5, 2.25, 0.7);
+        scalingValues = vec3(2.5, 2.25, 0.8);
 
     vec3 blur = vec3(0.0);
     float tw = 0.0;
 
-    for (float i = 0.0; i < 25.0; i++) {
-        vec4 offsets = vec4(oneTexel.x, oneTexel.y, i - 12.0, 0.0);         
-        float dist = abs(i - 12.0) / 12.0;
+    for (float i = 0.0; i < 17.0; i++) {
+        vec4 offsets = vec4(oneTexel.x, oneTexel.y, i - 8., 0.0);         
+        float dist = abs(i - 8.) / 8.;
         float weight = (exp(-(dist * dist) / 0.28));
         vec3 bsample = texture2D(DiffuseSampler, texCoord.xy + scalingValues.x * offsets.xy * offsets.zw).rgb * scalingValues.y;
              bsample += texture2D(DiffuseSampler, texCoord.xy + 1.25 * offsets.xy * offsets.wz).rgb * 2.0;
