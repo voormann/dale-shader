@@ -1,5 +1,5 @@
 # Dale Shader
-This is an efficient shader that doesn't require any mods to run.
+This is an efficient shader for Minecraft 1.16+ that doesn't require any mods to run. Works well with [Sodium](https://github.com/CaffeineMC/sodium-fabric).
 
 ### How to install
 1. Download the repository and extract it.
