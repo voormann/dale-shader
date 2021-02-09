@@ -13,7 +13,7 @@ uniform sampler2D WeatherDepthSampler;
 uniform sampler2D CloudsSampler;
 uniform sampler2D CloudsDepthSampler;
 
-uniform vec2 OutSize;
+uniform vec2 InSize;
 varying vec2 texCoord;
 varying vec2 oneTexel;
 
@@ -33,10 +33,12 @@ void tailor(vec4 color, float depth) {
 
     while (j > 0 && depthLayers[j] > depthLayers[i]) {
         float depthTemp = depthLayers[i];
+
         depthLayers[i] = depthLayers[j];
         depthLayers[j] = depthTemp;
 
         vec4 colorTemp = colorLayers[i];
+
         colorLayers[i] = colorLayers[j];
         colorLayers[j] = colorTemp;
 
@@ -59,7 +61,7 @@ vec4 antialias() {
     const float subpixelremoval = 0.25;
 
     vec4 pos = vec4(texCoord - oneTexel, texCoord + oneTexel);  
-    vec2 offset = vec2(0.33, 1.0) / OutSize;
+    vec2 offset = vec2(0.33, 1.0) / InSize;
     float lumaNw = Luma(texture2D(DiffuseSampler, pos.xy));
     float lumaSw = Luma(texture2D(DiffuseSampler, pos.xw));
     float lumaNe = Luma(texture2D(DiffuseSampler, pos.zy)) + 1.0 / 64.0;
@@ -111,8 +113,8 @@ vec3 bloom() {
     float tw = 0.0;
 
     for (float i = 0.0; i < 17.0; i++) {
-        vec4 offsets = vec4(oneTexel.x, oneTexel.y, i - 8., 0.0);         
-        float dist = abs(i - 8.) / 8.;
+        vec4 offsets = vec4(oneTexel.x, oneTexel.y, i - 8.0, 0.0);         
+        float dist = abs(i - 8.0) / 8.0;
         float weight = (exp(-(dist * dist) / 0.28));
         vec3 bsample = texture2D(DiffuseSampler, texCoord.xy + scalingValues.x * offsets.xy * offsets.zw).rgb * scalingValues.y;
              bsample += texture2D(DiffuseSampler, texCoord.xy + 1.25 * offsets.xy * offsets.wz).rgb * 2.0;
