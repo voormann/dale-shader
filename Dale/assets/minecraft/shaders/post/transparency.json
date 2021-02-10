@@ -10,7 +10,7 @@
     ],
     "passes": [
         {
-            "name": "transparency",
+            "name": "entry",
             "intarget": "minecraft:main",
             "outtarget": "final",
             "auxtargets": [
