@@ -6,11 +6,42 @@
         "particles",
         "clouds",
         "weather",
-        "final"
+        "final",
+        "jld"
     ],
     "passes": [
         {
-            "name": "entry",
+            "name": "ssao",
+            "intarget": "minecraft:main",
+            "outtarget": "final",
+            "auxtargets": [
+                {
+                    "name": "DiffuseDepthSampler",
+                    "id": "minecraft:main:depth"
+                }
+            ]
+        },
+        {
+            "name": "diffusion",
+            "intarget": "final",
+            "outtarget": "minecraft:main",
+            "auxtargets": [
+                {
+                    "name": "DiffuseDepthSampler",
+                    "id": "final:depth"
+                },
+                {
+                    "name": "TranslucentDepthSampler",
+                    "id": "translucent:depth"
+                },
+                {
+                    "name": "CloudsDepthSampler",
+                    "id": "clouds:depth"
+                }
+            ]
+        },
+        {
+            "name": "transparency",
             "intarget": "minecraft:main",
             "outtarget": "final",
             "auxtargets": [
@@ -61,8 +92,13 @@
             ]
         },
         {
-            "name": "blit",
+            "name": "afterglow",
             "intarget": "final",
+            "outtarget": "jld"
+        },
+        {
+            "name": "dale",
+            "intarget": "jld",
             "outtarget": "minecraft:main"
         }
     ]
