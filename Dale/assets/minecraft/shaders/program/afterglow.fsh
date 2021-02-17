@@ -40,11 +40,11 @@ vec3 toneMap(vec3 x) {
 }
 
 void main() {
-	vec3 gjengi = texture2D(DiffuseSampler, texCoord).rgb;
+    vec3 gjengi = texture2D(DiffuseSampler, texCoord).rgb;
 
-	gjengi += bloom();
+    gjengi += bloom();
     gjengi *= vec3(1.11, 0.89, 0.79);
     gjengi = toneMap(gjengi);
 
-	gl_FragColor = vec4(gjengi, 1.0);
+    gl_FragColor = vec4(gjengi, 1.0);
 }

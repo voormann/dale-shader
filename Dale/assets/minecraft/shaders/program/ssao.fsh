@@ -36,7 +36,7 @@ void main() {
     float ao = 1.0;
 
     if (depth < 1.0) {
-        ao = ssao( depth );
+        ao = ssao(depth);
     }
 
     float shadow = depth < (1.0 - 1.0 / 1024.0) ? clamp(smoothstep(0.0, 0.5, ao), 0.0, 1.0) : 1.0;
