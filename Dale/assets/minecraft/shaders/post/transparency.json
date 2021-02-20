@@ -41,7 +41,7 @@
             ]
         },
         {
-            "name": "transparency",
+            "name": "composite",
             "intarget": "minecraft:main",
             "outtarget": "final",
             "auxtargets": [

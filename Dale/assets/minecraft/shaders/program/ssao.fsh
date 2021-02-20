@@ -11,15 +11,15 @@ const float angleCos = cos(angle);
 const mat2 rotationMatrix = mat2(angleCos, angleSin, -angleSin, angleCos);
 
 float ssao(float sourceDepth) {
-    vec2 tapOffset = vec2(0.0, 1.0 / 512.0);
+    vec2 tapOffset = vec2(0.0, 1.0 / 256.0);
     float dist = 1.0 - pow(sourceDepth, 64.0);
     float occlusion = 0.0;
 
-    for (int i = 0; i < 6; ++i) {
-        for (int j = 0; j < 12; ++j) {
-            float mul = float( j + 1 ) * dist;
+    for (float i = 0.0; i < 6.0; ++i) {
+        for (float j = 1.0; j < 7.0; ++j) {
+            float mul = dist * j;
             float tapValue = texture2D(DiffuseDepthSampler, texCoord + (tapOffset * mul)).r;
-            float rangeCheck = clamp(smoothstep( 0.0, 1.0, mul / abs(sourceDepth - tapValue)), 0.0, 1.0 );
+            float rangeCheck = clamp(smoothstep( 0.0, 1.0, mul / abs(sourceDepth - tapValue)), 0.0, 1.0);
 
             occlusion += tapValue >= sourceDepth ? rangeCheck : 0.0;
         }
@@ -27,20 +27,14 @@ float ssao(float sourceDepth) {
         tapOffset = rotationMatrix * tapOffset;
     }
 
-    return occlusion / 72.0;
+    return occlusion / 36.0;
 }
 
 void main() {
     float depth = texture2D(DiffuseDepthSampler, texCoord).r;
-    vec3 color = texture2D(DiffuseSampler, texCoord).rgb;
-    float ao = 1.0;
-
-    if (depth < 1.0) {
-        ao = ssao(depth);
-    }
-
-    float shadow = depth < (1.0 - 1.0 / 1024.0) ? clamp(smoothstep(0.0, 0.5, ao), 0.0, 1.0) : 1.0;
-
-    gl_FragColor = vec4(mix(color * 0.5, color, shadow), 1.0);
+    float ao = depth < 1.0 ? ssao(depth) : 1.0;
+    vec3 gjengi = texture2D(DiffuseSampler, texCoord).rgb;
+    
+    gl_FragColor = vec4(mix(gjengi * 0.6, gjengi, clamp(smoothstep(0.0, 0.5, ao), 0.0, 1.0)), 1.0);
     gl_FragDepth = depth;
 }
