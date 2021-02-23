@@ -10,9 +10,9 @@ vec3 bloom() {
     vec3 blur = vec3(0.0);
     float yield = 0.0;
 
-    for (float i = 0.0; i < 17.0; i++) {
-        vec4 offsets = vec4(oneTexel.x, oneTexel.y, i - 8.0, 0.0);         
-        float dist = abs(i - 8.0) / 8.0;
+    for (float i = 0.0; i < 9.0; i++) {
+        vec4 offsets = vec4(oneTexel.x, oneTexel.y, i - 4.0, 0.0);         
+        float dist = abs(i - 4.0) / 4.0;
         float weight = (exp(-(dist * dist) / 0.28));
         vec3 sample = texture2D(DiffuseSampler, texCoord.st + amplitude.x * offsets.xy * offsets.zw).rgb * amplitude.y;
              sample += texture2D(DiffuseSampler, texCoord.st + 1.25 * offsets.xy * offsets.wz).rgb * 2.0;
