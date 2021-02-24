@@ -13,9 +13,9 @@ This is an efficient shader for Minecraft 1.16+ that doesn't require any mods to
 
 ### How to install
 1. Download the repository and extract it.
-2. Navigate to your Minecraft folder and move the Dale folder into your resourcepacks folder.
+2. Navigate to your `.minecraft` folder and move the `Dale` folder into your `resourcepacks` folder.
+4. Go to the Resource Packs menu and select Dale.
 3. Under Video Settings, set Graphics to Fabulous.
-4. Go to Resource Packs and select Dale.
 
 ### Comparisons
 ![Dale](https://user-images.githubusercontent.com/62495822/107961875-bcef8480-6fa6-11eb-9098-d58407fcdf26.png)
