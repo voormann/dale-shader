@@ -6,22 +6,21 @@ uniform sampler2D TranslucentDepthSampler;
 uniform sampler2D CloudsDepthSampler;
 
 varying vec2 texCoord;
-varying vec2 offCoord[12];
 
 vec3 diffuse() {
-    vec3 diffusion = texture2D(DiffuseSampler, offCoord[0]).rgb;
-    diffusion += texture2D(DiffuseSampler, offCoord[1]).rgb;
-    diffusion += texture2D(DiffuseSampler, offCoord[2]).rgb;
-    diffusion += texture2D(DiffuseSampler, offCoord[3]).rgb;
-    diffusion += texture2D(DiffuseSampler, offCoord[4]).rgb;
-    diffusion += texture2D(DiffuseSampler, offCoord[5]).rgb;
-    diffusion += texture2D(DiffuseSampler, offCoord[6]).rgb;
-    diffusion += texture2D(DiffuseSampler, offCoord[7]).rgb;
-    diffusion += texture2D(DiffuseSampler, offCoord[8]).rgb;
-    diffusion += texture2D(DiffuseSampler, offCoord[9]).rgb;
-    diffusion += texture2D(DiffuseSampler, offCoord[10]).rgb;
-    diffusion += texture2D(DiffuseSampler, offCoord[11]).rgb;
-
+    vec3 diffusion = texture2D(DiffuseSampler, texCoord + vec2(0.0, 0.0009765625)).rgb;
+    diffusion += texture2D(DiffuseSampler, texCoord + vec2(0.0, 0.001953125)).rgb;
+    diffusion += texture2D(DiffuseSampler, texCoord + vec2(-0.000845728, 0.0004882812)).rgb;
+    diffusion += texture2D(DiffuseSampler, texCoord + vec2(-0.001691456, 0.0009765624)).rgb;
+    diffusion += texture2D(DiffuseSampler, texCoord + vec2(-0.0008457279, -0.0004882814)).rgb;
+    diffusion += texture2D(DiffuseSampler, texCoord + vec2(-0.001691456, -0.0009765627)).rgb;
+    diffusion += texture2D(DiffuseSampler, texCoord + vec2(1.551271e-10, -0.0009765626)).rgb;
+    diffusion += texture2D(DiffuseSampler, texCoord + vec2(3.102542e-10, -0.001953125)).rgb;
+    diffusion += texture2D(DiffuseSampler, texCoord + vec2(0.0008457282, -0.0004882811)).rgb;
+    diffusion += texture2D(DiffuseSampler, texCoord + vec2(0.001691456, -0.0009765623)).rgb;
+    diffusion += texture2D(DiffuseSampler, texCoord + vec2(0.0008457279, 0.0004882815)).rgb;
+    diffusion += texture2D(DiffuseSampler, texCoord + vec2(0.001691456, 0.0009765631)).rgb;
+    
     return diffusion / 12.0;
 }
 
