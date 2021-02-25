@@ -4,7 +4,7 @@
         "srcrgb": "one",
         "dstrgb": "zero"
     },
-    "vertex": "quad",
+    "vertex": "kernel",
     "fragment": "diffusion",
     "attributes": ["Position"],
     "samplers": [
