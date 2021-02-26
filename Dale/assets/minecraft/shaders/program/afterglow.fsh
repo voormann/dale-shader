@@ -5,28 +5,34 @@ uniform sampler2D DiffuseSampler;
 varying vec2 texCoord;
 varying vec2 oneTexel;
 
+const float angle = radians(120.0);
+const float angleSin = sin(angle);
+const float angleCos = cos(angle);
+const mat2 rotationMatrix = mat2(angleCos, angleSin, -angleSin, angleCos);
+
+float Luma(vec3 rgb) {
+    return dot(rgb, vec3(0.2125, 0.7154, 0.0721));
+}
+
 vec3 bloom() {
-    vec3 amplitude = vec3(1.4, 1.8, 0.7);
-    vec3 blur = vec3(0.0);
-    float yield = 0.0;
+    vec3 glow = vec3(0.0);
+    vec2 direction = vec2(0.0, 2.0);
 
-    for (float i = 0.0; i < 9.0; i++) {
-        vec4 offsets = vec4(oneTexel.x, oneTexel.y, i - 4.0, 0.0);         
-        float dist = abs(i - 4.0) / 4.0;
-        float weight = (exp(-(dist * dist) / 0.28));
-        vec3 sample = texture2D(DiffuseSampler, texCoord.st + amplitude.x * offsets.xy * offsets.zw).rgb * amplitude.y;
-             sample += texture2D(DiffuseSampler, texCoord.st + 1.25 * offsets.xy * offsets.wz).rgb * 2.0;
+    for (int i = 0; i < 3; ++i) {
+        direction *= rotationMatrix;
 
-        blur += sample * weight;
-        yield += weight;
+        vec3 sample = texture2D(DiffuseSampler, texCoord + oneTexel * direction).rgb;
+        float intensity = pow(max(0.0, Luma(sample) - 0.8) * 5.0, 2.0) * 2.0;
+
+        glow += sample * intensity;
     }
 
-    blur /= yield;
-    blur = max(vec3(0.0), blur - amplitude.z);
+    vec3 glizwald = texture2D(DiffuseSampler, texCoord).rgb;
+    vec3 intensity = max(vec3(0.0), glizwald - 0.5) * 6.0;
 
-    vec3 bleed = blur * pow(length(blur) * 2.0, 2.8) * 2.0;
+    glow += glizwald * intensity;
 
-    return (bleed + blur * 1.15) * 0.0005;
+    return glow / 4.0;
 }
 
 vec3 toneMap(vec3 x) {
