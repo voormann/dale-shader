@@ -6,10 +6,10 @@ uniform vec2 InSize;
 varying vec2 texCoord;
 varying vec2 oneTexel;
 
-const float edgeSharpness = 8.0;
-const float edgeThreshold = 0.125;
-const float edgeThresholdMin = 0.04;
-const float subpixelremoval = 0.25;
+const float edgeSharpness = 6.0; // Sharpness of FXAA
+const float edgeThreshold = 0.25; // Threshold for FXAA to blur
+const float edgeThresholdMin = 0.01; // Higher values increase performance but have more aliasing in darker areas
+const float subpixelremoval = 0.25; // Highly recommended to keep this as it is
 const float grain = 0.5 / 255.0;
 
 float Luma(vec3 rgb) {
